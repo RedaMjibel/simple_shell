@@ -9,11 +9,24 @@
 /**
  * main - entry point
  *
- * Retrun: allways 0
+ * Return: allways 0
  */
 
 int main(void)
 {
-	printf("hello world\n");
+	size_t n = 1;
+	int value = 0/*, check*/;
+	pid_t pid = 0;
+	char *delim = " \n", *token = NULL;
+	char **argv = NULL;
+	char *input = malloc(sizeof(char) * n);
+
+	if (!isatty(fileno(stdin)))
+	{
+		getline(&input, &n, stdin);
+		exec(argv, token, pid, value, input, delim);
+		free(input);
+		exit(0);
+	}
 	return (0);
 }
