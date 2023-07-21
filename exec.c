@@ -18,8 +18,7 @@
  * Return: 0 on success or -1 on failure
  */
 
-int exec(char **argv, char *token, pid_t pid,
-		int value, char *input, char *delim)
+int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 {
 	int argc = 0, i = 0;
 	char *input_cp;
@@ -41,24 +40,27 @@ int exec(char **argv, char *token, pid_t pid,
 	}
 	argv[argc] = NULL;
 	i = 0;
-	pid = fork();
+	if (!access(argv[0], R_OK))
+	{
+		pid = fork();
 	if (pid == -1)
 		return (-1);
 	if (pid == 0)
 	{
 		while (argv[i])
 		{
-			value = execve(input_cp, argv, NULL);
-			if (value == -1)
-			{
-				perror("./shell"), free(argv);
-				exit(98);
-			}
+			execve(input_cp, argv, NULL);
 			i++;
 		}
 	}
 	else
 		wait(NULL);
+	}
+	else
+	{
+		perror("./shell"), free(argv), free(input_cp);
+		return (-1);
+	}
 	free(input_cp), free(argv);
 	return (0);
 }

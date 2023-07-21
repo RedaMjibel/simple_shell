@@ -8,7 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int exec(char **argv, char *token, pid_t, int value,
+int exec(char **argv, char *token, pid_t,
 		char *input, char *delim);
 
 #endif
