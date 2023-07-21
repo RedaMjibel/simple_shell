@@ -15,7 +15,7 @@
 int main(void)
 {
 	size_t n = 1;
-	int value = 0, check;
+	int check;
 	pid_t pid = 0;
 	char *delim = " \n", *token = NULL;
 	char **argv = NULL;
@@ -24,7 +24,7 @@ int main(void)
 	if (!isatty(fileno(stdin)))
 	{
 		getline(&input, &n, stdin);
-		exec(argv, token, pid, value, input, delim);
+		exec(argv, token, pid, input, delim);
 		free(input);
 		exit(0);
 	}
@@ -37,7 +37,7 @@ int main(void)
 	}
 	while (input)
 	{
-		exec(argv, token, pid, value, input, delim);
+		exec(argv, token, pid, input, delim);
 		printf("#cisfun$ ");
 		check = getline(&input, &n, stdin);
 		if (check == -1)
