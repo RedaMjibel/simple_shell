@@ -1,4 +1,3 @@
 #simpleshell
 
-this is a group project for alx 
-test
+this is a group project for alx
