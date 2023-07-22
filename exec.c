@@ -22,8 +22,15 @@ int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 {
 	int argc = 0, i = 0;
 	char *input_cp;
+	char buffer[1024];
+	char* newdir = "//root//simple_shell";
+	char* dirlim = "/";
 
-	input_cp = strdup(input);
+	_chdir();
+	getcwd(buffer, 1024);
+	strcat(buffer, dirlim);
+	strcat(buffer, input);
+	input_cp = strdup(buffer);
 	token = strtok(input, delim);
 	while (token != NULL)
 	{
@@ -40,6 +47,7 @@ int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 	}
 	argv[argc] = NULL;
 	i = 0;
+	chdir(newdir);
 	if (!access(argv[0], R_OK))
 	{
 		pid = fork();
