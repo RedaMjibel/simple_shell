@@ -8,7 +8,7 @@
 
 /**
  * exec - executes a command given by the user
- * @argv: number of arguments passed to commande
+ * @argv: arguments passed to commande
  * @token: to be used to tokenize the given command
  * @pid: process id
  * @value: check value
