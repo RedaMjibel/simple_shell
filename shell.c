@@ -17,7 +17,7 @@ int main(void)
 	size_t n = 1;
 	int check;
 	pid_t pid = 0;
-	char *delim = " \n", *token = NULL;
+	char *delim = " \n", *token = NULL, *input_cp = NULL;
 	char **argv = NULL;
 	char *input = malloc(sizeof(char) * n);
 
@@ -25,7 +25,6 @@ int main(void)
 	{
 		getline(&input, &n, stdin);
 		exec(argv, token, pid, input, delim);
-		free(input);
 		exit(0);
 	}
 	printf("#cisfun$ ");
@@ -37,6 +36,13 @@ int main(void)
 	}
 	while (input)
 	{
+		input_cp = strdup(input);
+		token = strtok(input_cp, delim);
+		if (strcmp(input_cp, "exit") == 0)
+		{
+			free(input_cp), exit(0);
+		}
+		free(input_cp);
 		exec(argv, token, pid, input, delim);
 		printf("#cisfun$ ");
 		check = getline(&input, &n, stdin);
