@@ -21,23 +21,14 @@
 int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 {
 	int argc = 0, i = 0;
-	char *input_cp;
+	char *input_cp = NULL;
 	char buffer[1024];
-	char* newdir = "//root//simple_shell";
-	char* dirlim = "/";
-	char *ktoken = NULL;
+	char *newdir = "//root//simple_shell";
+	char *inputbuff;
 
-	input_cp = strdup(input);
-	ktoken = strtok(input, dirlim);
-	if (strcmp(ktoken, "bin") != 0)
-	{
-	_chdir();
-	getcwd(buffer, 1024);
-	strcat(buffer, dirlim);
-	strcat(buffer, input);
-	input_cp = strdup(buffer);
-	}
-	token = strtok(input, delim);
+	input_cp = input_check(buffer, input);
+	inputbuff = strdup(input);
+	token = strtok(inputbuff, delim);
 	while (token != NULL)
 	{
 		token = strtok(NULL, delim);
@@ -75,6 +66,6 @@ int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 		perror("./shell"), free(argv), free(input_cp);
 		return (-1);
 	}
-	free(input_cp), free(argv);/*, free(ktoken);*/
+	free(input_cp), free(argv), free(token), free(inputbuff);
 	return (0);
 }
