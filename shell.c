@@ -8,7 +8,8 @@
 
 /**
  * main - entry point
- *
+ * @ac: number of arguments passed to the program
+ * @av: the arguments passed
  * Return: allways 0
  */
 
@@ -26,8 +27,7 @@ int main(int ac, char **av)
 		getline(&input, &n, stdin);
 		if (n == 15736)
 		{
-			printf("%d\n", ac);
-			printf("%s\n", *av);
+			printf("%d%s\n", ac, *av);
 		}
 		exec(argv, token, pid, input, delim, av);
 		exit(0);

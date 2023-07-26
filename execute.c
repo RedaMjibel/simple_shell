@@ -10,6 +10,8 @@
  * execute - executes the code
  * @argv: arguments passed by the user
  * @pid: process id
+ * @av: arguments passed to the program
+ * @input: user input
  *
  * Return: 0 on success or -1 on faliure
  */
@@ -35,8 +37,9 @@ int execute(char **argv, pid_t pid, char **av, char *input)
 	{
 		char *delim = " \n";
 		char *token = NULL;
+
 		token = strtok(input, delim);
-		printf("%s 1: %s: not found\n",av[0], token);
+		printf("%s 1: %s: not found\n", av[0], token);
 		return (-1);
 	}
 	return (0);

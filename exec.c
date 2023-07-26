@@ -13,11 +13,13 @@
  * @pid: process id
  * @input: input from the user
  * @delim: delimiter
+ * @av: arguments passed to the program
  *
  * Return: 0 on success or -1 on failure
  */
 
-int exec(char **argv, char *token, pid_t pid, char *input, char *delim, char **av)
+int exec(char **argv, char *token, pid_t pid, char *input,
+		char *delim, char **av)
 {
 	int argc = 0, i = 0;
 	char *input_cp = NULL;
