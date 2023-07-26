@@ -11,7 +11,6 @@
  * @argv: arguments passed to commande
  * @token: to be used to tokenize the given command
  * @pid: process id
- * @value: check value
  * @input: input from the user
  * @delim: delimiter
  *
@@ -45,27 +44,7 @@ int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 	argv[argc] = NULL;
 	i = 0;
 	chdir(newdir);
-	if (!access(argv[0], R_OK))
-	{
-		pid = fork();
-	if (pid == -1)
-		return (-1);
-	if (pid == 0)
-	{
-		while (argv[i])
-		{
-			execve(input_cp, argv, NULL);
-			i++;
-		}
-	}
-	else
-		wait(NULL);
-	}
-	else
-	{
-		perror("./shell"), free(argv), free(input_cp);
-		return (-1);
-	}
+	execute(argv, pid, input_cp);
 	free(input_cp), free(argv), free(token), free(inputbuff);
 	return (0);
 }

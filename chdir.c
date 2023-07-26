@@ -7,14 +7,14 @@
 #include <sys/wait.h>
 
 /**
- * chdir - changes the working directory to bin
+ * _chdir - changes the working directory to bin
  *
- * Return 0 on success -1 on failure
+ * Return: 0 on success -1 on failure
  */
 
 int _chdir(void)
 {
-	char* newdir = "//bin//";
+	char *newdir = "//bin//";
 
 	if (chdir(newdir) == -1)
 	{
