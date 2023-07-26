@@ -14,7 +14,7 @@
  * Return: 0 on success or -1 on faliure
  */
 
-int execute(char **argv, pid_t pid)
+int execute(char **argv, pid_t pid, char **av, char *input)
 {
 
 	if (!access(argv[0], R_OK))
@@ -33,7 +33,10 @@ int execute(char **argv, pid_t pid)
 	}
 	else
 	{
-		printf(".%s: 1: not found\n",argv[0]);
+		char *delim = " \n";
+		char *token = NULL;
+		token = strtok(input, delim);
+		printf("%s 1: %s: not found\n",av[0], token);
 		return (-1);
 	}
 	return (0);

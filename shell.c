@@ -12,7 +12,7 @@
  * Return: allways 0
  */
 
-int main(void)
+int main(int ac, char **av)
 {
 	size_t n = 1;
 	int check;
@@ -24,7 +24,12 @@ int main(void)
 	if (!isatty(fileno(stdin)))
 	{
 		getline(&input, &n, stdin);
-		exec(argv, token, pid, input, delim);
+		if (n == 15736)
+		{
+			printf("%d\n", ac);
+			printf("%s\n", *av);
+		}
+		exec(argv, token, pid, input, delim, av);
 		exit(0);
 	}
 	printf("#cisfun$ ");
@@ -45,7 +50,7 @@ int main(void)
 			exit(0);
 		}
 		free(input_cp);
-		exec(argv, token, pid, input, delim);
+		exec(argv, token, pid, input, delim, av);
 		printf("#cisfun$ ");
 	}
 	free(input);

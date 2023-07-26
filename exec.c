@@ -17,7 +17,7 @@
  * Return: 0 on success or -1 on failure
  */
 
-int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
+int exec(char **argv, char *token, pid_t pid, char *input, char *delim, char **av)
 {
 	int argc = 0, i = 0;
 	char *input_cp = NULL;
@@ -44,7 +44,7 @@ int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 	argv[argc] = NULL;
 	i = 0;
 	chdir(newdir);
-	execute(argv, pid);
+	execute(argv, pid, av, input);
 	free(argv), free(token), free(inputbuff), free(input_cp);
 	return (0);
 }
