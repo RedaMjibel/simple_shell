@@ -51,7 +51,7 @@ int exec(char **argv, char *token, pid_t pid,
 			value = execve(input_cp, argv, NULL);
 			if (value == -1)
 			{
-				perror("./shell"), free(argv);
+				perror("./shell"), free(argv), free(input_cp);
 				exit(98);
 			}
 			i++;
