@@ -8,28 +8,24 @@
 
 /**
  * exec - executes a command given by the user
- * @argv: arguments passed to commande
+ * @argv: number of arguments passed to commande
  * @token: to be used to tokenize the given command
  * @pid: process id
+ * @value: check value
  * @input: input from the user
  * @delim: delimiter
- * @av: arguments passed to the program
  *
  * Return: 0 on success or -1 on failure
  */
 
-int exec(char **argv, char *token, pid_t pid, char *input,
-		char *delim, char **av)
+int exec(char **argv, char *token, pid_t pid,
+		int value, char *input, char *delim)
 {
-	int argc = 0, i = 0, check = 0;
-	char *input_cp = NULL;
-	char buffer[1024];
-	char *newdir = "//root//simple_shell";
-	char *inputbuff;
+	int argc = 0, i = 0;
+	char *input_cp;
 
-	input_cp = input_check(buffer, input);
-	inputbuff = strdup(input);
-	token = strtok(inputbuff, delim);
+	input_cp = strdup(input);
+	token = strtok(input, delim);
 	while (token != NULL)
 	{
 		token = strtok(NULL, delim);
@@ -45,13 +41,25 @@ int exec(char **argv, char *token, pid_t pid, char *input,
 	}
 	argv[argc] = NULL;
 	i = 0;
-	chdir(newdir);
-	check = execute(argv, pid, av, input);
-	if (check == -1)
-	{
-		free(argv), free(token), free(inputbuff), free(input_cp);
+	pid = fork();
+	if (pid == -1)
 		return (-1);
+	if (pid == 0)
+	{
+		while (argv[i])
+		{
+			value = execve(input_cp, argv, NULL);
+			if (value == -1)
+			{
+				perror("./shell"), free(argv);
+				exit(98);
+			}
+			i++;
+		}
 	}
-	free(argv), free(token), free(inputbuff), free(input_cp);
+	else
+		wait(NULL);
+	free(input_cp), free(argv);
 	return (0);
 }
+

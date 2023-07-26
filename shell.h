@@ -8,12 +8,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int exec(char **argv, char *token, pid_t,
-		char *input, char *delim, char **av);
-int _chdir(void);
-
-char *input_check(char *buffer, char *input);
-
-int execute(char **argv, pid_t pid, char **av, char *input);
+int exec(char **argv, char *token, pid_t pid, int value,
+		char *input, char *delim);
 
 #endif
+
