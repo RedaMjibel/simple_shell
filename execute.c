@@ -37,7 +37,7 @@ int execute(char **argv, pid_t pid, char *input_cp)
 	}
 	else
 	{
-		perror("./shell"), free(argv), free(input_cp);
+		perror("./shell");
 		return (-1);
 	}
 	return (0);

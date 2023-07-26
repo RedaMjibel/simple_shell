@@ -18,8 +18,8 @@ char *input_check(char *buffer, char *input)
 {
 	char *dirlim = "/";
 	char *ktoken = NULL;
-	char *temp = NULL;
 	char *tempcp = NULL;
+	char *temp = NULL;
 
 	tempcp = strdup(input);
 	ktoken = strtok(tempcp, dirlim);
