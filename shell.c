@@ -38,14 +38,13 @@ int main(void)
 	{
 		input_cp = strdup(input);
 		token = strtok(input_cp, delim);
-		if (strcmp(input_cp, "exit") == 0)
+		if (strcmp(token, "exit") == 0)
 		{
-			free(input_cp), exit(0);
+			free(input_cp), free(input), exit(0);
 		}
 		free(input_cp);
 		exec(argv, token, pid, input, delim);
 		printf("#cisfun$ ");
-		free(input);
 		check = getline(&input, &n, stdin);
 		if (check == -1)
 		{
@@ -53,5 +52,6 @@ int main(void)
 			exit(98);
 		}
 	}
+	free(input);
 	return (0);
 }
