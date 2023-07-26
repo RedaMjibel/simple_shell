@@ -30,9 +30,9 @@ char *input_check(char *buffer, char *input)
 		strcat(buffer, dirlim);
 		strcat(buffer, ktoken);
 		temp = strdup(buffer);
-		free(tempcp);
+		free(tempcp), free(ktoken);
 		return (temp);
 	}
-	free(tempcp);
+	free(tempcp), free(ktoken);
 	return (input);
 }
