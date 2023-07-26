@@ -66,6 +66,6 @@ int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 		perror("./shell"), free(argv), free(input_cp);
 		return (-1);
 	}
-	free(input_cp), free(argv), free(token), free(inputbuff);
+	/*free(input_cp), */free(argv), free(token), free(inputbuff);
 	return (0);
 }

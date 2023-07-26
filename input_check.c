@@ -28,7 +28,7 @@ char *input_check(char *buffer, char *input)
 		_chdir();
 		getcwd(buffer, 1024);
 		strcat(buffer, dirlim);
-		strcat(buffer, input);
+		strcat(buffer, ktoken);
 		temp = strdup(buffer);
 		free(tempcp);
 		return (temp);
