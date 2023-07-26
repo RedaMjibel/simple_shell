@@ -10,7 +10,6 @@
  * execute - executes the code
  * @argv: arguments passed by the user
  * @pid: process id
- * @input_cp: user input
  *
  * Return: 0 on success or -1 on faliure
  */
