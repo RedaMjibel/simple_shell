@@ -14,6 +14,6 @@ int _chdir(void);
 
 char *input_check(char *buffer, char *input);
 
-int execute(char **argv, pid_t pid, char *input_cp);
+int execute(char **argv, pid_t pid);
 
 #endif

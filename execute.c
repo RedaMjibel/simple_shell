@@ -15,9 +15,8 @@
  * Return: 0 on success or -1 on faliure
  */
 
-int execute(char **argv, pid_t pid, char *input_cp)
+int execute(char **argv, pid_t pid)
 {
-	int i = 0;
 
 	if (!access(argv[0], R_OK))
 	{
@@ -26,11 +25,9 @@ int execute(char **argv, pid_t pid, char *input_cp)
 			return (-1);
 		if (pid == 0)
 		{
-			while (argv[i])
-			{
-				execve(input_cp, argv, NULL);
-				i++;
-			}
+			execve(argv[0], argv, NULL);
+			perror(argv[0]);
+			exit(EXIT_FAILURE);
 		}
 		else
 			wait(NULL);
