@@ -19,7 +19,6 @@ char *input_check(char *buffer, char *input)
 	char *dirlim = "/";
 	char *ktoken = NULL;
 	char *tempcp = NULL;
-	char *temp = NULL;
 
 	tempcp = strdup(input);
 	ktoken = strtok(tempcp, dirlim);
@@ -29,10 +28,12 @@ char *input_check(char *buffer, char *input)
 		getcwd(buffer, 1024);
 		strcat(buffer, dirlim);
 		strcat(buffer, ktoken);
-		temp = strdup(buffer);
-		free(tempcp);
-		return (temp);
+	}
+	else
+	{
+		strcpy(buffer, input);
 	}
 	free(tempcp);
-	return (input);
+
+	return (strdup(buffer));
 }
