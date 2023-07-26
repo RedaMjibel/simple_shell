@@ -53,6 +53,5 @@ int main(void)
 			exit(98);
 		}
 	}
-	/*free(input);*/
 	return (0);
 }
