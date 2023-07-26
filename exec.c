@@ -45,6 +45,6 @@ int exec(char **argv, char *token, pid_t pid, char *input, char *delim)
 	i = 0;
 	chdir(newdir);
 	execute(argv, pid);
-	free(input_cp), free(argv), free(token), free(inputbuff);
+	free(argv), free(token), free(inputbuff), free(input_cp);
 	return (0);
 }

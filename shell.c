@@ -45,6 +45,7 @@ int main(void)
 		free(input_cp);
 		exec(argv, token, pid, input, delim);
 		printf("#cisfun$ ");
+		free(input);
 		check = getline(&input, &n, stdin);
 		if (check == -1)
 		{
@@ -52,6 +53,6 @@ int main(void)
 			exit(98);
 		}
 	}
-	free(input);
+	/*free(input);*/
 	return (0);
 }
