@@ -25,11 +25,10 @@ int main(int ac, char **av)
 	if (!isatty(fileno(stdin)))
 	{
 		getline(&input, &n, stdin);
-		if (n == 15736)
-		{
-			printf("%d%s\n", ac, *av);
-		}
-		exec(argv, token, pid, input, delim, av);
+		(void)ac;
+		check = exec(argv, token, pid, input, delim, av);
+		if (check == -1)
+			exit(127);
 		exit(0);
 	}
 	printf("#cisfun$ ");

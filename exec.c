@@ -21,7 +21,7 @@
 int exec(char **argv, char *token, pid_t pid, char *input,
 		char *delim, char **av)
 {
-	int argc = 0, i = 0;
+	int argc = 0, i = 0, check = 0;
 	char *input_cp = NULL;
 	char buffer[1024];
 	char *newdir = "//root//simple_shell";
@@ -46,7 +46,12 @@ int exec(char **argv, char *token, pid_t pid, char *input,
 	argv[argc] = NULL;
 	i = 0;
 	chdir(newdir);
-	execute(argv, pid, av, input);
+	check = execute(argv, pid, av, input);
+	if (check == -1)
+	{
+		free(argv), free(token), free(inputbuff), free(input_cp);
+		return (-1);
+	}
 	free(argv), free(token), free(inputbuff), free(input_cp);
 	return (0);
 }
