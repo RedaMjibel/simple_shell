@@ -33,7 +33,7 @@ int execute(char **argv, pid_t pid)
 	}
 	else
 	{
-		perror("./shell");
+		printf(".%s: 1: not found\n",argv[0]);
 		return (-1);
 	}
 	return (0);
