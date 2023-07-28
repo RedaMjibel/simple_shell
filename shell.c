@@ -25,7 +25,7 @@ int main(void)
 	if (!isatty(fileno(stdin)))
 	{
 		getline(&input, &n, stdin);
-		xit(input, delim);
+		/*xit(input, delim);*/
 		exec(argv, token, pid, value, input, delim);
 		free(input);
 		exit(0);
