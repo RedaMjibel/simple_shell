@@ -11,5 +11,7 @@
 int exec(char **argv, char *token, pid_t pid, int value,
 		char *input, char *delim);
 
+void xit(char *input, char *delim);
+
 #endif
 
