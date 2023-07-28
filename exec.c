@@ -46,11 +46,15 @@ int exec(char **argv, char *token, pid_t pid,
 		return (-1);
 	if (pid == 0)
 	{
-		value = execve(argv[0], argv, NULL);
-		if (value == -1)
+		while (argv[i])
 		{
-			perror("./shell"), free(argv);
-			exit(98);
+			value = execve(input_cp, argv, NULL);
+			if (value == -1)
+			{
+				perror("./shell"), free(argv);
+				exit(98);
+			}
+			i++;
 		}
 	}
 	else
