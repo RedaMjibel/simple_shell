@@ -24,8 +24,6 @@ int exec(char **argv, char *token, pid_t pid,
 	int argc = 0, i = 0;
 	char *input_cp;
 
-	if (strcmp(input, "/bin/ls /bin/ls /bin/ls"))
-		input = "/bin/ls";
 	input_cp = strdup(input);
 	token = strtok(input, delim);
 	while (token != NULL)
@@ -48,12 +46,12 @@ int exec(char **argv, char *token, pid_t pid,
 		return (-1);
 	if (pid == 0)
 	{
-			value = execve(argv[0], argv, NULL);
-			if (value == -1)
-			{
-				perror("./shell"), free(argv), free(input_cp);
-				exit(98);
-			}
+		value = execve(argv[0], argv, NULL);
+		if (value == -1)
+		{
+			perror("./shell"), free(argv);
+			exit(98);
+		}
 	}
 	else
 		wait(NULL);
