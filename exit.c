@@ -14,17 +14,20 @@
  * Return: 0 un success
  */
 
-void xit(char *input, char *delim)
+int xit(char *input, char *delim)
 {
-	char *input_cp = NULL;
 	char *token = NULL;
+	char *buffer = NULL;
 
-	input_cp = strdup(input);
-	token = strtok(input_cp, delim);
-	if (strcmp(token, "exit") == 0)
+	if (input == NULL || delim == NULL)
+		return (-1);
+	buffer = strdup(input);
+	token = strtok(buffer, delim);
+	if (token != NULL && strcmp(token, "exit") == 0)
 	{
-		free(input_cp);
-		free(input);
+		free(buffer);
 		exit(0);
 	}
+	free(buffer);
+	return (0);
 }
