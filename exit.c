@@ -23,7 +23,7 @@ int xit(char *input, char *delim)
 		return (-1);*/
 	buffer = strdup(input);
 	token = strtok(buffer, delim);
-	if (token != NULL && strcmp(token, "exit") == 0)
+	if (strcmp(token, "exit") == 0)
 	{
 		free(buffer);
 		exit(0);
