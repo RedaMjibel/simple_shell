@@ -26,6 +26,7 @@ int xit(char *input, char *delim)
 	if (strcmp(token, "exit") == 0)
 	{
 		free(buffer);
+		free(input);
 		exit(0);
 	}
 	free(buffer);
