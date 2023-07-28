@@ -19,11 +19,11 @@ int xit(char *input, char *delim)
 	char *token = NULL;
 	char *buffer = NULL;
 
-	/*if (input == NULL || delim == NULL)
-		return (-1);*/
+	if (input == NULL || delim == NULL)
+		return (-1);
 	buffer = strdup(input);
 	token = strtok(buffer, delim);
-	if (strcmp(token, "exit") == 0)
+	if (token != NULL && strcmp(token, "exit") == 0)
 	{
 		free(buffer);
 		free(input);
